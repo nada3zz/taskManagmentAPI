@@ -4,18 +4,20 @@ import { IAddTaskData } from "../interfaces/IAddTask";
 import { IUpdateTaskData } from "../interfaces/IUpdateTask";
 import { IFindAllTasks } from "../interfaces/IFindAllTasks";
 
-class TaskRepository{
-  async findAll(options: IFindAllTasks = {}) : Promise<any> {
+class TaskRepository {
+  async findAll(options: IFindAllTasks = {}, userId: number): Promise<any> {
     const { page = 1, limit = 5, search, sortOrder = "asc" } = options;
 
-    const where = search
-      ? {
-          OR: [
-            { title: { contains: search } },
-            { description: { contains: search } },
-          ],
-        }
-      : {};
+    const where: any = {
+      assignedTo: { id: userId },
+    };
+
+    if (search) {
+      where.OR = [
+        { title: { contains: search } },
+        { description: { contains: search } },
+      ];
+    }
 
     const [tasks, totalCount] = await Promise.all([
       prisma.task.findMany({

@@ -16,7 +16,7 @@ class UserController {
   }
 
   async findUserTasks(req: AuthenticatedRequest, res: Response) {
-    const { id } = req.params;  //TODO handle error 
+    const { id } = req.params;
     const data = await userService.findUserTasks(+id);
     return { data };
   }
