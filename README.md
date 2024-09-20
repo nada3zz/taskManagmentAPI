@@ -27,12 +27,7 @@ npm install
 ```
 - Setup the database:
 
-The database schema is defined using Prisma. To initialize the database, run:
-
-```sh
-npx prisma migrate dev --name init
-```
-To visualize the DB run:
+The database schema is defined using Prisma with SQLite. To visualize the DB run:
 
 ```sh
 npx prisma studio
