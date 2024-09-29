@@ -1,4 +1,4 @@
-import userRepo from "../repository/index";
+import userRepo from "../repository/user.repository";
 import { encryptPassword, comparePassword } from "../../../../utils/bcrypt";
 import { signJwt } from "../../../../utils/jwt";
 import { BadRequestException } from "../../../../utils/exceptions";
@@ -8,16 +8,17 @@ class UserService {
   async register(
     username: string,
     password: string
-  ): Promise<{ data: string }> {
-    const user = await userRepo.findUser(username);
-    if (user) throw new BadRequestException("This username already exists");
+  ): Promise<{ accessToken: string }> {
+    const findUser = await userRepo.findUser(username);
+    if (findUser) throw new BadRequestException("This username already exists");
     const hashedPassword = await encryptPassword(password);
     const newUser: IUserData = {
       username,
       password: hashedPassword,
     };
-    await userRepo.create(newUser);
-    return { data: "User has been created successfully" };
+    const user = await userRepo.create(newUser);
+    const accessToken = signJwt({ username: user.username, id: user.id });
+    return { accessToken };
   }
 
   async logIn(

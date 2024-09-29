@@ -8,11 +8,9 @@ const controller = (service: (req: Request, res: Response) => Promise<any>) => {
   ): Promise<void> => {
     try {
       const result = await service(req, res);
-      const { status = 200, data = null, message = "" } = result || {};
+      const { data = null } = result || {};
       res.json({
-        status,
-        data,
-        message,
+        data
       });
     } catch (error) {
       next(error);

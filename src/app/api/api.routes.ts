@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { taskBaseRoute, taskRoutes } from "../api/Task/routes";
-import { userBaseRoute, userRoutes } from "../api/User/routes";
+import { taskBaseRoute, taskRoutes } from "./Task/task.routes";
+import { userBaseRoute, userRoutes } from "./User/user.routes";
 
 const baseRouter = Router();
 

@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import userService from "../services/index";
-import { AuthenticatedRequest } from "../../../middlewares/isAuthenticated";
+import userService from "../services/user.service";
+import { AuthenticatedRequest } from "../../../middlewares/isAuthenticated.middleware";
 
 class UserController {
   async register(req: Request, res: Response) {

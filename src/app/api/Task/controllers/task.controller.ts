@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import taskService from "../services";
-import { AuthenticatedRequest } from "../../../middlewares/isAuthenticated";
+import taskService from "../services/task.service";
+import { AuthenticatedRequest } from "../../../middlewares/isAuthenticated.middleware";
 
 class TaskController {
   async getAllTasks(req: AuthenticatedRequest, res: Response) {
@@ -18,36 +18,35 @@ class TaskController {
     return tasks;
   }
 
-  async getTask(req: AuthenticatedRequest, res: Response): Promise<Response> {
+  async getTask(req: AuthenticatedRequest, res: Response) {
     const { id } = req.params;
     const userId = req.user?.id;
     const { data } = await taskService.getTask(+id, userId);
-    return res.json(data);
+    return { data };
   }
 
-  async addTask(req: AuthenticatedRequest, res: Response): Promise<Response> {
+  async addTask(req: AuthenticatedRequest, res: Response) {
     const data = req.body;
     const userId = req.user?.id;
-    const result = await taskService.addTask(data, userId);
-    return res.json(result);
+    const result = await taskService.addTask(data, +userId);
+    return result ;
   }
-
   async updateTask(
     req: AuthenticatedRequest,
     res: Response
-  ): Promise<Response> {
+  ) {
     const { id } = req.params;
     const data = req.body;
     const userId = req.user?.id;
     const result = await taskService.updateTask(+id, data, userId);
-    return res.json(result);
+    return result;
   }
 
-  async delete(req: AuthenticatedRequest, res: Response): Promise<Response> {
+  async delete(req: AuthenticatedRequest, res: Response) {
     const { id } = req.params;
     const userId = req.user?.id;
     const result = await taskService.deleteTask(+id, userId);
-    return res.json(result);
+    return result;
   }
 }
 

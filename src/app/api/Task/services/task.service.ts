@@ -1,4 +1,4 @@
-import taskRepo from "../repository";
+import taskRepo from "../repository/task.repository";
 import {
   BadRequestException,
   ForbiddenException,
