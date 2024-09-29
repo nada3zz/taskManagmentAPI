@@ -34,13 +34,13 @@ class TaskService {
     data: IUpdateTaskData,
     userId: number
   ): Promise<{ data: string }> {
-    await this._findTask(userId, id);
+    await this._findTask(id, userId);
     await taskRepo.update(id, data);
     return { data: "Task has been updated successfully" };
   }
 
   async deleteTask(id: number, userId: number): Promise<{ data: {} }> {
-    await this._findTask(userId, id);
+    await this._findTask(id, userId);
     await taskRepo.delete(id);
     return { data: "Task has been deleted successfully" };
   }
