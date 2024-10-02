@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors";
-import { apiBaseRouter } from "./app/api/api.routes";
+import { apiBaseRouter } from "./app/api/routes/api.routes";
 import { errorHandler } from "./app/middlewares/errorHandler.middleware";
 import { notFound } from "./app/middlewares/notFound.middleware";
 import swaggerUi from 'swagger-ui-express';

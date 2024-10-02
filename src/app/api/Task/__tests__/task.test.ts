@@ -11,7 +11,7 @@ describe("Task Management", () => {
 
   beforeAll(async () => {
     const res = await request(app)
-      .post("/api/auth/register")
+      .post("/api/users/register")
       .send({ username: "testUser", password: "Password@123" });
     token = res.body.data.accessToken;
   });

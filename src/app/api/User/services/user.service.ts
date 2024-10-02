@@ -33,12 +33,6 @@ class UserService {
     return { accessToken };
   }
 
-  async findUserTasks(id: number) {
-    const user = await userRepo.findUserById(id);
-    if (!user) throw new BadRequestException("This user does not exist");
-    const userTasks = await userRepo.findUserTasks(id);
-    return { userTasks };
-  }
 }
 
 export default new UserService();

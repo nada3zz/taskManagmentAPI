@@ -15,11 +15,6 @@ class UserController {
     return { data };
   }
 
-  async findUserTasks(req: AuthenticatedRequest, res: Response) {
-    const { id } = req.params;
-    const data = await userService.findUserTasks(+id);
-    return { data };
-  }
 }
 
 export default new UserController();

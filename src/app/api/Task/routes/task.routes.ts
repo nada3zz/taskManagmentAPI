@@ -1,9 +1,9 @@
 import { Router } from "express";
-import { validator } from "../../middlewares/validator.middleware";
-import { controller } from "../../middlewares/controller.middleware";
-import taskController from "./controllers/task.controller";
-import { taskValidation } from "./schema/task.schema";
-import { isAuthenticated } from "../../middlewares/isAuthenticated.middleware";
+import { validator } from "../../../middlewares/validator.middleware";
+import { controller } from "../../../middlewares/controller.middleware";
+import taskController from "../controllers/task.controller";
+import { taskValidation } from "../schema/task.schema";
+import { isAuthenticated } from "../../../middlewares/isAuthenticated.middleware";
 
 const router = Router();
 
@@ -43,6 +43,7 @@ router.delete(
   validator(taskValidation.delete),
   controller(taskController.delete)
 );
+
 
 export const taskBaseRoute = baseRoute;
 export const taskRoutes = router;

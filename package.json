@@ -6,9 +6,9 @@
   "scripts": {
     "pretest": "cross-env NODE_ENV=test DATABASE_URL=file:./test.db npx prisma migrate reset",
     "test": "cross-env NODE_ENV=test DATABASE_URL=file:./test.db jest",
-    "start": "ts-node src/server.ts",
+    "start": "ts-node src/utils/server.ts",
     "build": "tsc",
-    "serve": "node dist/server.js",
+    "serve": "node dist/utils/server.js",
     "dev": "nodemon"
   },
   "keywords": [],
